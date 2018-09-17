@@ -4,6 +4,8 @@
 
 ## Build generated
 build/
+FusionNavigator.build
+FusionNavigator.dylib
 DerivedData/
 
 ## Various settings
