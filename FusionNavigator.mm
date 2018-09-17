@@ -19,8 +19,41 @@ Ptr<UserInterface> ui;
 void switchViewOrientation(ViewOrientations orientation) {
     auto viewport = app->activeViewport();
     auto camera = viewport->camera();
+    
     camera->isSmoothTransition(true);
     camera->viewOrientation(orientation);
+    
+    // Refresh viewport
+    viewport->camera(camera);
+    viewport->refresh();
+}
+
+void switchToHomeViewOrientation() {
+    auto viewport = app->activeViewport();
+    auto camera = viewport->camera();
+    
+    auto eye = camera->eye();
+    auto target = camera->target();
+    auto upVector = camera->upVector();
+
+    eye->x(25.611467);
+    eye->y(25.611467);
+    eye->z(25.611467);
+
+    target->x(0);
+    target->y(0);
+    target->z(0);
+
+    upVector->x(0);
+    upVector->y(1);
+    upVector->z(0);
+
+    camera->eye(eye);
+    camera->target(target);
+    camera->upVector(upVector);
+    camera->viewExtents(247.286294);    
+    camera->isSmoothTransition(true);
+    
     // Refresh viewport
     viewport->camera(camera);
     viewport->refresh();
@@ -29,8 +62,14 @@ void switchViewOrientation(ViewOrientations orientation) {
 @implementation NSApplication (Tracking)
 - (void)hookedSendEvent:(NSEvent *)event {
     if (app->activeViewport()) {
+        // If has active viewport
         if (event.type == NSEventTypeKeyDown) {
-            if ((event.modifierFlags & NSEventModifierFlagControl) && (event.modifierFlags & NSEventModifierFlagOption)) {
+            // Only capture key down events
+            if (
+                ((event.modifierFlags & NSEventModifierFlagControl) && (event.modifierFlags & NSEventModifierFlagOption)) ||
+                ((event.modifierFlags & NSEventModifierFlagCommand) && (event.modifierFlags & NSEventModifierFlagShift))
+            ) {
+                // Control + Option(Alt)
                 switch (event.keyCode) {
                     case 123:
                         // Left
@@ -59,7 +98,7 @@ void switchViewOrientation(ViewOrientations orientation) {
                     case 4:
                     case 36:
                         // H or Enter
-                        switchViewOrientation(IsoTopRightViewOrientation);
+                        switchToHomeViewOrientation();
                         return;
                     default:
                         break;
