@@ -19,12 +19,11 @@ Ptr<UserInterface> ui;
 void switchViewOrientation(ViewOrientations orientation) {
     auto viewport = app->activeViewport();
     auto camera = viewport->camera();
-    camera->isSmoothTransition(false);
+    camera->isSmoothTransition(true);
     camera->viewOrientation(orientation);
     // Refresh viewport
     viewport->camera(camera);
     viewport->refresh();
-    viewport->fit();
 }
 
 @implementation NSApplication (Tracking)
