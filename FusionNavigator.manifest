@@ -1,0 +1,15 @@
+{
+	"autodeskProduct":	"Fusion360",
+	"type":	"addin",
+	"author":	"Henry Li",
+	"description":	{
+		"":	"Adds shortcuts for quickly switching between preset view orientations."
+	},
+	"supportedOS":	"windows|mac",
+	"editEnabled":	true,
+	"id":	"6687da15-d698-4bae-84aa-8808d228c2a4",
+	"version":	"0.1.0",
+	"runOnStartup":	false,
+	"sourcewindows":	"FusionNavigator.vcxproj",
+	"sourcemac":	"FusionNavigator.xcodeproj"
+}
