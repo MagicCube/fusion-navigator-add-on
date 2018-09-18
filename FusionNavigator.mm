@@ -36,8 +36,13 @@ void switchToHomeViewOrientation() {
     auto target = camera->target();
     auto upVector = camera->upVector();
 
+//    Capture position
+//    ui->messageBox(string("eye: ") + to_string(eye->x()) + ", " + to_string(eye->y()) + ", " + to_string(eye->z()));
+//    ui->messageBox(string("target: ") + to_string(target->x()) + ", " + to_string(target->y()) + ", " + to_string(target->z()));
+//    ui->messageBox(string("upVector: ") + to_string(upVector->x()) + ", " + to_string(upVector->y()) + ", " + to_string(upVector->z()));
+
     eye->x(25.611467);
-    eye->y(25.611467);
+    eye->y(-25.611467);
     eye->z(25.611467);
 
     target->x(0);
@@ -45,8 +50,8 @@ void switchToHomeViewOrientation() {
     target->z(0);
 
     upVector->x(0);
-    upVector->y(1);
-    upVector->z(0);
+    upVector->y(0);
+    upVector->z(1);
 
     camera->eye(eye);
     camera->target(target);
